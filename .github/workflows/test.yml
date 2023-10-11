@@ -63,7 +63,12 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: name/app
+          images: |
+            ghcr.io/${{ github.repository }}/$IMAGE_NAME
+          tags: |
+            type=raw,value=${{ needs.linux64.outputs.version }}
+            type=ref,event=tag
+            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Debug
         if: ${{ steps.image-name.outputs.images }}
@@ -97,6 +102,7 @@ jobs:
           file: Dockerfile.prebuild
           platforms: linux/amd64,linux/arm64/v8
           push: true
-          tags: ${{ steps.image-name.outputs.images }}
+          labels: ${{ steps.meta.outputs.labels }}
+          tags: "${{ steps.meta.outputs.tags }}"
           build-args: |
             build_name=${{ steps.image-name.outputs.build_version }}
