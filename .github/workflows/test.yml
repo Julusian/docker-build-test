@@ -39,7 +39,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ghcr.io/${{ github.repository }}/$IMAGE_NAME
+            ghcr.io/${{ github.repository }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=${{ needs.linux64.outputs.version }}
             type=ref,event=tag
