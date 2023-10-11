@@ -69,14 +69,6 @@ jobs:
             type=raw,value=${{ needs.linux64.outputs.version }}
             type=ref,event=tag
 
-      - name: Debug
-        if: ${{ steps.image-name.outputs.images }}
-        shell: bash
-        run: |
-          echo "my images: ${{ steps.image-name.outputs.images }}""
-          echo "labels: ${{ steps.meta.outputs.labels}}"
-          echo "tags: ${{ steps.meta.outputs.tags}}"
-
       - name: Set up QEMU
         if: ${{ steps.image-name.outputs.images }}
         uses: docker/setup-qemu-action@v2
