@@ -12,6 +12,7 @@ jobs:
         id: filenames
         shell: bash
         run: |
+          echo "OK"
           #echo "branch=stable" >> $GITHUB_OUTPUT
           echo "branch=beta" >> $GITHUB_OUTPUT
           echo "longversion=3.1.0+6223-stable-1b6dfc49" >> $GITHUB_OUTPUT
