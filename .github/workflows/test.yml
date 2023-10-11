@@ -68,7 +68,6 @@ jobs:
           tags: |
             type=raw,value=${{ needs.linux64.outputs.version }}
             type=ref,event=tag
-            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Debug
         if: ${{ steps.image-name.outputs.images }}
